@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="BaseRuleset">
+    <description>Coding Standard adapted for basic applications. Based on PSR-12 with some modifications</description>
+    <file>app</file>
+    <file>routes</file>
+    <file>bootstrap/app.php</file>
+    <file>config</file>
+    <file>database</file>
+    <file>tests</file>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>public/*</exclude-pattern>
+    <exclude-pattern>bootstrap/*</exclude-pattern>
+    <exclude-pattern>database/*</exclude-pattern>
+    <exclude-pattern>server.php</exclude-pattern>
+
+    <arg name="tab-width" value="4"/>
+    <arg name="basepath" value="."/>
+
+    <!-- value : use a comma separated list of rules to tell phpcs where the sniffs live. -->
+    <config name="installed_paths"
+            value="vendor/escapestudios/symfony2-coding-standard,vendor/slevomat/coding-standard"/>
+
+    <arg name="extensions" value="php"/>
+    <!-- use PSR-12 Coding Standards -->
+    <rule ref="PSR12"/>
+</ruleset>

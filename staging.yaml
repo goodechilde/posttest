@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: AMAZING API
+  description: The AMAZING API
+  version: 1.0.0
+servers:
+  - url: '/api'
+paths:
+  /posts:
+    $ref: './app/OpenAPI/Post.yaml#/Posts'
+  /posts/{postId}:
+    $ref: './app/OpenAPI/Post.yaml#/Post'
+
+components:
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic

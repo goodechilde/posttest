@@ -1,0 +1,138 @@
+Posts:
+  get:
+    summary: Post index
+    description: Returns a list of posts
+    operationId: postIndex
+    security:
+      - basic_auth: []
+    tags:
+      - 'Post'
+    parameters:
+      - $ref: './parameters/PostParameters.yaml#/PostSort'
+      - $ref: './parameters/PostParameters.yaml#/PostFilters'
+      - $ref: './parameters/PostParameters.yaml#/PostPage'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Post response object
+              required:
+                - data
+                - links
+                - meta
+              properties:
+                data:
+                  type: array
+                  description: A collection of posts
+                  items:
+                    $ref: './schemas/PostSchema.yaml#/Post'
+                links:
+                  $ref: './schemas/PostSchema.yaml#/PostLinks'
+                meta:
+                  $ref: './schemas/PostSchema.yaml#/PostMeta'
+      '400':
+        description: Bad Request
+  post:
+    summary: Post store
+    description: Stores a post
+    operationId: postStore
+    security:
+      - basic_auth: []
+    tags:
+      - 'Post'
+    requestBody:
+      $ref: './components/PostComponent.yaml#/requestBodies/PostRequest'
+    responses:
+      '201':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: './schemas/PostSchema.yaml#/Post'
+      '422':
+        $ref: './responses/GeneralResponses.yaml#/UnprocessableResponse'
+Post:
+  get:
+    summary: Post show
+    description: Returns a single post
+    operationId: postShow
+    security:
+      - basic_auth: []
+    tags:
+      - 'Post'
+    parameters:
+      - name: postId
+        in: path
+        description: Post identifier for the url
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: './schemas/PostSchema.yaml#/Post'
+      '404':
+        $ref: './responses/GeneralResponses.yaml#/NotFoundResponse'
+      '400':
+        $ref: './responses/GeneralResponses.yaml#/BadRequestResponse'
+  put:
+    summary: Post update
+    description: Update a post
+    operationId: postUpdate
+    security:
+      - basic_auth: []
+    tags:
+      - 'Post'
+    parameters:
+      - name: postId
+        in: path
+        description: Post identifier for the url
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      $ref: './components/PostComponent.yaml#/requestBodies/PostRequest'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: './schemas/PostSchema.yaml#/Post'
+      '404':
+        $ref: './responses/GeneralResponses.yaml#/NotFoundResponse'
+  delete:
+    summary: Post delete
+    description: Delete a single post
+    operationId: postDestroy
+    security:
+      - basic_auth: []
+    tags:
+      - 'Post'
+    parameters:
+      - name: postId
+        in: path
+        description: Post identifier for the url
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: No Content
+      '404':
+        $ref: './responses/GeneralResponses.yaml#/NotFoundResponse'

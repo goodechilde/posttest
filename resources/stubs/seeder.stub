@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+
+class DummyClass extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(DummyModel::class, 25)->create();
+
+        Permission::create(['name' => 'view DummyPlural']);
+        Permission::create(['name' => 'viewAny DummyPlural']);
+        Permission::create(['name' => 'create DummyPlural']);
+        Permission::create(['name' => 'update DummyPlural']);
+        Permission::create(['name' => 'delete DummyPlural']);
+
+
+    }
+}

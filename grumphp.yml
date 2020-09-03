@@ -1,0 +1,13 @@
+grumphp:
+  tasks:
+    psalm:
+      config: psalm.xml
+      ignore_patterns: []
+      no_cache: false
+      report: ~
+      output_format: null
+      threads: 1
+      triggered_by: ['php']
+      show_info: false
+    phpcs:
+      warning_severity: 0

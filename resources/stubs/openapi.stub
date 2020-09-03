@@ -1,0 +1,138 @@
+DummyModels:
+  get:
+    summary: DummyModel index
+    description: Returns a list of dummyModels
+    operationId: dummyModelIndex
+    security:
+      - basic_auth: []
+    tags:
+      - 'DummyModel'
+    parameters:
+      - $ref: './parameters/DummyModelParameters.yaml#/DummyModelSort'
+      - $ref: './parameters/DummyModelParameters.yaml#/DummyModelFilters'
+      - $ref: './parameters/DummyModelParameters.yaml#/DummyModelPage'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              description: DummyModel response object
+              required:
+                - data
+                - links
+                - meta
+              properties:
+                data:
+                  type: array
+                  description: A collection of dummyModels
+                  items:
+                    $ref: './schemas/DummyModelSchema.yaml#/DummyModel'
+                links:
+                  $ref: './schemas/DummyModelSchema.yaml#/DummyModelLinks'
+                meta:
+                  $ref: './schemas/DummyModelSchema.yaml#/DummyModelMeta'
+      '400':
+        description: Bad Request
+  post:
+    summary: DummyModel store
+    description: Stores a dummyModel
+    operationId: dummyModelStore
+    security:
+      - basic_auth: []
+    tags:
+      - 'DummyModel'
+    requestBody:
+      $ref: './components/DummyModelComponent.yaml#/requestBodies/DummyModelRequest'
+    responses:
+      '201':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: './schemas/DummyModelSchema.yaml#/DummyModel'
+      '422':
+        $ref: './responses/GeneralResponses.yaml#/UnprocessableResponse'
+DummyModel:
+  get:
+    summary: DummyModel show
+    description: Returns a single dummyModel
+    operationId: dummyModelShow
+    security:
+      - basic_auth: []
+    tags:
+      - 'DummyModel'
+    parameters:
+      - name: dummyModelId
+        in: path
+        description: DummyModel identifier for the url
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: './schemas/DummyModelSchema.yaml#/DummyModel'
+      '404':
+        $ref: './responses/GeneralResponses.yaml#/NotFoundResponse'
+      '400':
+        $ref: './responses/GeneralResponses.yaml#/BadRequestResponse'
+  put:
+    summary: DummyModel update
+    description: Update a dummyModel
+    operationId: dummyModelUpdate
+    security:
+      - basic_auth: []
+    tags:
+      - 'DummyModel'
+    parameters:
+      - name: dummyModelId
+        in: path
+        description: DummyModel identifier for the url
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      $ref: './components/DummyModelComponent.yaml#/requestBodies/DummyModelRequest'
+    responses:
+      '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: './schemas/DummyModelSchema.yaml#/DummyModel'
+      '404':
+        $ref: './responses/GeneralResponses.yaml#/NotFoundResponse'
+  delete:
+    summary: DummyModel delete
+    description: Delete a single dummyModel
+    operationId: dummyModelDestroy
+    security:
+      - basic_auth: []
+    tags:
+      - 'DummyModel'
+    parameters:
+      - name: dummyModelId
+        in: path
+        description: DummyModel identifier for the url
+        required: true
+        schema:
+          type: integer
+    responses:
+      '204':
+        description: No Content
+      '404':
+        $ref: './responses/GeneralResponses.yaml#/NotFoundResponse'

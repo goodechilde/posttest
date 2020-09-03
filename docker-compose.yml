@@ -1,0 +1,47 @@
+version: '3.6'
+
+# Requires Docker v18.02 or higher.
+#####################################################################
+#   The DockerPHP Project                                           #
+#   https://github.com/phpexpertsinc/docker-php                     #
+#   License: MIT                                                    #
+#                                                                   #
+#   Copyright © 2018-2020 PHP Experts, Inc. <sales@phpexperts.pro>  #
+#       Author: Theodore R. Smith <theodore@phpexperts.pro>         #
+#      PGP Sig: 4BF826131C3487ACD28F2AD8EB24A91DD6125690            #
+#####################################################################
+
+
+services:
+  web:
+    build:
+      context: ./docker
+      dockerfile: DOCKERFILE
+#    image: phpexperts/web:nginx-php7.4-debug
+    volumes:
+      - .:/var/www:delegated
+      - ./docker/web:/etc/nginx/custom
+      - ./docker/web/ImageMagick/policy.xml:/etc/ImageMagick-6/policy.xml
+    ports:
+      - ${NGINX_PORT:-80}:80
+
+
+  ###### CUSTOM EDITS START HERE ######
+  postgres:
+    image: postgres:12.2
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./docker/database/conf.d:/etc/postgresql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    # Commend if you do not want it to be exposed system-wide.
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+
+volumes:
+  postgres:
+
+

@@ -1,0 +1,114 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Http\Requests\DummyModelStoreRequest;
+use App\Http\Requests\DummyModelUpdateRequest;
+use App\Http\Resources\DummyModelResource;
+use App\DummyModel;
+use App\Services\DummyModelIndexService;
+use App\Services\DummyModelStoreService;
+use App\Services\DummyModelUpdateService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
+
+/**
+ * @group  DummyModel management
+ *
+ * APIs for managing DummyModel
+ */
+
+class DummyClass extends Controller
+{
+    /**
+     * Sets authorization for all resources on this class
+     * uncomment authorizationResource to enable the Policy
+     *
+     */
+    public function __construct()
+    {
+//        $this->authorizeResource(DummyModel::class);
+    }
+
+    /**
+     * Display a listing of the dummyModel resource.
+     * @queryParam sort Field to sort by. Defaults to 'id'.
+     * @queryParam fields[dummyModel] Comma-separated fields to include in the response
+     * @queryParam filters[INSERTFILTER] Filter by INSERTFILTER.
+     * @queryParam include Include related information, accepted values .
+     *
+     * @param DummyModelIndexService $service
+     * @return AnonymousResourceCollection
+     */
+    public function index(DummyModelIndexService $service): AnonymousResourceCollection
+    {
+        $dummyModel = $service->handle();
+        return DummyModelResource::collection($dummyModel);
+    }
+
+
+    /**
+     * Store a newly created dummyModel resource in storage.
+     *
+     * @param DummyModelStoreRequest $request
+     * @param DummyModelStoreService $service
+     * @return DummyModelResource
+     */
+    public function store(
+            DummyModelStoreRequest $request,
+            DummyModelStoreService $service
+        ): DummyModelResource
+    {
+        $dummyModel = $service->handle($request);
+        return new DummyModelResource(
+            $dummyModel
+        );
+    }
+
+    /**
+     * Display the specified dummyModel resource.
+     *
+     * @param DummyModel $dummyModel
+     * @return DummyModelResource
+     */
+    public function show(DummyModel $dummyModel): DummyModelResource
+    {
+        return new DummyModelResource(
+            $dummyModel
+        );
+    }
+
+    /**
+     * Update the specified dummyModel resource in storage.
+     *
+     * @param DummyModelUpdateRequest $request
+     * @param DummyModelUpdateService $service
+     * @param DummyModel $dummyModel
+     * @return DummyModelResource
+     */
+    public function update(
+            DummyModelUpdateRequest $request,
+            DummyModelUpdateService $service,
+            DummyModel $dummyModel
+        ): DummyModelResource
+    {
+        $dummyModel = $service->handle($dummyModel, $request);
+        return new DummyModelResource(
+            $dummyModel
+        );
+    }
+
+    /**
+     * Remove the specified dummyModel resource from storage.
+     *
+     * @param DummyModel $dummyModel
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy(DummyModel $dummyModel): Response
+    {
+        $dummyModel->delete();
+        return noContent();
+    }
+}

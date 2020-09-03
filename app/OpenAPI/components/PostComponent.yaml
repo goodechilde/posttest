@@ -1,0 +1,16 @@
+schemas:
+  $refs: '../schemas/PostSchema.yaml'
+parameters:
+  $refs: '../parameters/PostParameters.yaml'
+requestBodies:
+  PostRequest:
+    content:
+      'application/json':
+        schema:
+          $ref: '../schemas/PostSchema.yaml#/PostFillableFields'
+responses:
+  $refs: './responses/GeneralResponses.yaml'
+securitySchemes:
+  basic_auth:
+    type: http
+    scheme: basic
