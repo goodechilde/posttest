@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f8acd6d1c90878b2211462c4b3367a54",
+    "content-hash": "14c25e487e12c84181f55caf4df7c4dd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6094,6 +6094,48 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "jasonmccreary/laravel-test-assertions",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jasonmccreary/laravel-test-assertions.git",
+                "reference": "3ead0117ce53d2b64ce6a6caa5db26f2188712ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jasonmccreary/laravel-test-assertions/zipball/3ead0117ce53d2b64ce6a6caa5db26f2188712ae",
+                "reference": "3ead0117ce53d2b64ce6a6caa5db26f2188712ae",
+                "shasum": ""
+            },
+            "require": {
+                "mockery/mockery": "^1.0",
+                "php": ">=7.2",
+                "phpunit/phpunit": "^7.5|^8.0|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JMac\\Testing\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jason McCreary",
+                    "email": "jason@pureconcepts.net"
+                }
+            ],
+            "description": "A set of helpful assertions when testing Laravel applications.",
+            "support": {
+                "issues": "https://github.com/jasonmccreary/laravel-test-assertions/issues",
+                "source": "https://github.com/jasonmccreary/laravel-test-assertions/tree/master"
+            },
+            "time": "2020-04-03T15:14:24+00:00"
+        },
+        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.10",
             "source": {
@@ -6226,6 +6268,56 @@
                 "testing"
             ],
             "time": "2020-08-11T18:10:13+00:00"
+        },
+        {
+            "name": "mpociot/laravel-test-factory-helper",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpociot/laravel-test-factory-helper.git",
+                "reference": "4660d6116cf451394343dea7922dc0e9de7e78c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpociot/laravel-test-factory-helper/zipball/4660d6116cf451394343dea7922dc0e9de7e78c0",
+                "reference": "4660d6116cf451394343dea7922dc0e9de7e78c0",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.9",
+                "illuminate/console": "^6.0|^7.0",
+                "illuminate/filesystem": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "php": "^7.2.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mpociot\\LaravelTestFactoryHelper\\TestFactoryHelperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mpociot\\LaravelTestFactoryHelper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Generate Laravel test factories from your existing models",
+            "keywords": [
+                "factory",
+                "laravel",
+                "tests"
+            ],
+            "support": {
+                "issues": "https://github.com/mpociot/laravel-test-factory-helper/issues",
+                "source": "https://github.com/mpociot/laravel-test-factory-helper/tree/master"
+            },
+            "time": "2020-03-02T16:04:35+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -8956,5 +9048,6 @@
     "platform": {
         "php": "^7.2.5"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
